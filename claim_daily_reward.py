@@ -2,8 +2,7 @@ from genshin import Game, Client, InvalidCookies, AlreadyClaimed
 
 async def claim(ltuid: str, ltoken: str, ltmid: str):
     target_games=[
-        Game.GENSHIN, Game.STARRAIL,
-        Game.ZZZ
+        Game.GENSHIN
     ]
     client=Client(
         lang="ko-kr",

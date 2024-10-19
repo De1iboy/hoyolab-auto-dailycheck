@@ -1,10 +1,6 @@
 from genshin import Game, Client, InvalidCookies, AlreadyClaimed
 
-async def claim(ltuid: str, ltoken: str, ltmid: str):
-    target_games=[
-        Game.GENSHIN, Game.STARRAIL,
-        Game.ZZZ
-    ]
+async def claim(ltuid: str, ltoken: str, ltmid: str, game: Game):
     client=Client(
         lang="ko-kr",
         cookies={
@@ -14,20 +10,17 @@ async def claim(ltuid: str, ltoken: str, ltmid: str):
         }
     )
 
-    for g in target_games:
-        status="❌"
-
-        try:
-            await client.claim_daily_reward(game=g)
-            status="✅"
-        except(InvalidCookies, AlreadyClaimed) as e:
-            status="🟡"
+    try:
+        await client.claim_daily_reward(game=game)
+        status="✅"
+    except(InvalidCookies, AlreadyClaimed) as e:
+        status="🟡"
         
-        _, day=await client.get_reward_info(game=g)
-        rewards=await client.get_monthly_rewards(game=g)
-        reward=rewards[day-1]
+    _, day=await client.get_reward_info(game=game)
+    rewards=await client.get_monthly_rewards(game=game)
+    reward=rewards[day-1]
 
-        print(f"Claimed[{status}]: {reward.name} x{reward.amount}")
+    print(f"Claimed[{status}]: {reward.name} x{reward.amount}")
 
 if __name__ == "__main__":
     import os
@@ -43,6 +36,6 @@ if __name__ == "__main__":
     ltoken3=os.getenv("ZZZ_ACCOUNT_LTOKEN")
     ltmid3=os.getenv("ZZZ_ACCOUNT_LTMID")
 
-    asyncio.run(claim(ltuid=ltuid1, ltoken=ltoken1, ltmid=ltmid1))
-    asyncio.run(claim(ltuid=ltuid2, ltoken=ltoken2, ltmid=ltmid2))
-    asyncio.run(claim(ltuid=ltuid3, ltoken=ltoken3, ltmid=ltmid3))
+    asyncio.run(claim(ltuid=ltuid1, ltoken=ltoken1, ltmid=ltmid1, game=Game.GENSHIN))
+    asyncio.run(claim(ltuid=ltuid2, ltoken=ltoken2, ltmid=ltmid2, game=Game.STARRAIL))
+    asyncio.run(claim(ltuid=ltuid3, ltoken=ltoken3, ltmid=ltmid3, game=Game.ZZZ))

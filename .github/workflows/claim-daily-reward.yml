@@ -18,7 +18,13 @@ jobs:
 
     - name: Claim daily reward
       env:
-        HOYO_LTUID: ${{ secrets.HOYO_LTUID }}
-        HOYO_LTOKEN: ${{ secrets.HOYO_LTOKEN }}
-        HOYO_LTIMID: ${{ secrets.HOYO_LTIMID }}
+        GENSHIN_ACCOUNT_LTMID: ${{ secrets.GENSHIN_ACCOUNT_LTMID }}
+        GENSHIN_ACCOUNT_LTOKEN: ${{ secrets.GENSHIN_ACCOUNT_LTOKEN }}
+        GENSHIN_ACCOUNT_LTUID: ${{ secrets.GENSHIN_ACCOUNT_LTUID }}
+        STARRAIL_ACCOUNT_LTMID: ${{ secrets.STARRAIL_ACCOUNT_LTMID }}
+        STARRAIL_ACCOUNT_LTOKEN: ${{ secrets.STARRAIL_ACCOUNT_LTOKEN }}
+        STARRAIL_ACCOUNT_LTUID: ${{ secrets.STARRAIL_ACCOUNT_LTUID }}
+        ZZZ_ACCOUNT_LTMID: ${{ secrets.ZZZ_ACCOUNT_LTMID }}
+        ZZZ_ACCOUNT_LTOKEN: ${{ secrets.ZZZ_ACCOUNT_LTOKEN }}
+        ZZZ_ACCOUNT_LTUID: ${{ secrets.ZZZ_ACCOUNT_LTUID }}
       run: python claim_daily_reward.py

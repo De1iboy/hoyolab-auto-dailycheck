@@ -2,7 +2,8 @@ from genshin import Game, Client, InvalidCookies, AlreadyClaimed
 
 async def claim(ltuid: str, ltoken: str, ltmid: str):
     target_games=[
-        Game.GENSHIN
+        Game.GENSHIN, Game.STARRAIL,
+        Game.ZZZ
     ]
     client=Client(
         lang="ko-kr",
@@ -32,8 +33,16 @@ if __name__ == "__main__":
     import os
     import asyncio
 
-    ltuid=os.getenv("HOYO_LTUID")
-    ltoken=os.getenv("HOYO_LTOKEN")
-    ltmid=os.getenv("HOYO_LTMID")
+    ltuid1=os.getenv("GENSHIN_ACCOUNT_LTUID")
+    ltoken1=os.getenv("GENSHIN_ACCOUNT_LTOKEN")
+    ltmid1=os.getenv("GENSHIN_ACCOUNT_LTMID")
+    ltuid2=os.getenv("STARRAIL_ACCOUNT_LTUID")
+    ltoken2=os.getenv("STARRAIL_ACCOUNT_LTOKEN")
+    ltmid2=os.getenv("STARRAIL_ACCOUNT_LTMID")
+    ltuid3=os.getenv("ZZZ_ACCOUNT_LTUID")
+    ltoken3=os.getenv("ZZZ_ACCOUNT_LTOKEN")
+    ltmid3=os.getenv("ZZZ_ACCOUNT_LTMID")
 
-    asyncio.run(claim(ltuid=ltuid, ltoken=ltoken, ltmid=ltmid))
+    asyncio.run(claim(ltuid=ltuid1, ltoken=ltoken1, ltmid=ltmid1))
+    asyncio.run(claim(ltuid=ltuid2, ltoken=ltoken2, ltmid=ltmid2))
+    asyncio.run(claim(ltuid=ltuid3, ltoken=ltoken3, ltmid=ltmid3))
